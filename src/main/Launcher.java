@@ -8,7 +8,7 @@ public class Launcher {
 		System.setProperty("sun.java2d.opengl", "true");
 
 		Game game = new Game();
-		JFrame frame = new JFrame("Snake Game");
+		JFrame frame = new JFrame("Worm Dodge");
 																
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(game);
