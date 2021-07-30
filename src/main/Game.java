@@ -6,9 +6,11 @@ import input.Keyboard;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.time.Instant;
 import java.util.Random;
 
 public class Game extends JPanel implements Runnable {
@@ -35,6 +37,9 @@ public class Game extends JPanel implements Runnable {
 	
 	private Ball balls[];
 	private int numberOfBalls = 15;
+
+	private long start = 0;
+	private boolean firstTime = true;
 
 	public Game() {
 		initGui();
@@ -80,6 +85,13 @@ public class Game extends JPanel implements Runnable {
 
 
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		graphics.setColor(Color.white);
+		graphics.setFont(new Font("Consolas", Font.BOLD, 26));
+		if(!firstTime)
+			graphics.drawString("SCORE: " + (System.currentTimeMillis() - start), 10, 30);
+		else
+			graphics.drawString("SCORE: 0", 10, 30);
 
 		graphics.setColor(Color.green);
 		worm.draw(wormX, wormY, graphics);
@@ -124,14 +136,37 @@ public class Game extends JPanel implements Runnable {
 			}
 			repaint();
 		}
-
 	}
 	
 	public void update() {
-		if(key.down) wormY += wormSpeed;
-		if(key.up) wormY -= wormSpeed;
-		if(key.right) wormX += wormSpeed;
-		if(key.left) wormX -= wormSpeed;
+		if(key.down) {
+			if(firstTime) {
+				start = System.currentTimeMillis();
+				firstTime = false;
+			}
+			wormY += wormSpeed;
+		}
+		if(key.up) {
+			if(firstTime) {
+				start = System.currentTimeMillis();
+				firstTime = false;
+			}
+			wormY -= wormSpeed;
+		}
+		if(key.right) {
+			if(firstTime) {
+				start = System.currentTimeMillis();
+				firstTime = false;
+			}
+			wormX += wormSpeed;
+		}
+		if(key.left) {
+			if(firstTime) {
+				start = System.currentTimeMillis();
+				firstTime = false;
+			}
+			wormX -= wormSpeed;
+		}
 		key.update();
 		
 		checkForCollisions();
