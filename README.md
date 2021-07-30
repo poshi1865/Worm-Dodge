@@ -3,7 +3,8 @@ Everytime you eat a ball, your movement speed and length increases, and this goe
 
 This game is written from scratch in Java using the swing library.
 
-![WD1](https://user-images.githubusercontent.com/63964405/127646733-9090c809-cef9-4447-a2d4-b151ab069b8f.png)
-![WD2](https://user-images.githubusercontent.com/63964405/127646749-5e786fdd-53fe-4e42-9257-608dcabb8057.png)
-![WD3](https://user-images.githubusercontent.com/63964405/127646756-34cea5a0-fecb-4a3d-8724-6207a12a14b8.png)
+![WD1](https://user-images.githubusercontent.com/63964405/127646877-3635406a-a3b3-4cba-83a1-a06a41c6586b.png)
+![WD2](https://user-images.githubusercontent.com/63964405/127646890-9bc063b0-faf1-4049-96fc-4dbcf171e7aa.png)
+![WD3](https://user-images.githubusercontent.com/63964405/127646898-d23374cc-c9c1-4f69-a4ce-7ae51bc70341.png)
+
 
