@@ -17,7 +17,7 @@ public class Game extends JPanel implements Runnable {
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	
-	private int snakex = 100, snakey = 100;
+	private int wormX = 100, wormY = 100;
 	
 	private int score = 0;
 	
@@ -28,15 +28,15 @@ public class Game extends JPanel implements Runnable {
 	public Thread thread;
 	private boolean running = false;
 	
-	private Snake snake;
-	private int snakeSpeed = 2;
+	private Worm worm;
+	private int wormSpeed = 2;
 	
 	private Ball balls[];
 	private int numberOfBalls = 15;
 
 	public Game() {
 		initGui();
-		snake = new Snake(snakex, snakey, 75);
+		worm = new Worm(wormX, wormY, 75);
 		balls = new Ball[numberOfBalls];
 		key = new Keyboard();
 		addKeyListener(key);
@@ -74,7 +74,7 @@ public class Game extends JPanel implements Runnable {
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
 		graphics.setColor(Color.green);
-		snake.draw(snakex, snakey, graphics);
+		worm.draw(wormX, wormY, graphics);
 		for(int i = 0; i < balls.length; i++) {
 			balls[i].draw(balls[i].x, balls[i].y, graphics);
 		}
@@ -120,10 +120,10 @@ public class Game extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		if(key.down) snakey += snakeSpeed;
-		if(key.up) snakey -= snakeSpeed;
-		if(key.right) snakex += snakeSpeed;
-		if(key.left) snakex -= snakeSpeed;
+		if(key.down) wormY += wormSpeed;
+		if(key.up) wormY -= wormSpeed;
+		if(key.right) wormX += wormSpeed;
+		if(key.left) wormX -= wormSpeed;
 		key.update();
 		
 		checkForCollisions();
@@ -141,15 +141,15 @@ public class Game extends JPanel implements Runnable {
 	
 	private void checkForCollisions() {
 		
-		//SNAKE WITH BOUNDARY
-		if(snakex > WIDTH - 10 || snakey > HEIGHT - 10 || snakex < -10 || snakey < -10) {
+		//WORM WITH BOUNDARY
+		if(wormX > WIDTH - 10 || wormY > HEIGHT - 10 || wormX < -10 || wormY < -10) {
 			running = false;
 		}
 		
-		//SNAKE WITH BALL
+		//WORM WITH BALL
 		for(int i = 0; i < balls.length; i++) {
-			if(snake.intersects(balls[i])) {
-				snakeSpeed++;
+			if(worm.intersects(balls[i])) {
+				wormSpeed++;
 				score++;
 				balls[i].x = random.nextInt(WIDTH - balls[i].radius * 2);
 				balls[i].y = random.nextInt(HEIGHT - balls[i].radius * 2);

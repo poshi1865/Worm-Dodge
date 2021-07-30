@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import entities.Node;
 
-public class Snake {
+public class Worm {
 	
 	private Node head;
 	private ArrayList<Node> nodes;
@@ -14,7 +14,7 @@ public class Snake {
 	
 	private int tailX, tailY;
 	
-	public Snake(int xPos, int yPos, int length) {
+	public Worm(int xPos, int yPos, int length) {
 		head = new Node(xPos, yPos);
 		nodes = new ArrayList<Node>();
 		this.length = length;
